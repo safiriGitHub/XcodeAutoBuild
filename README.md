@@ -5,14 +5,12 @@
 
 1. 脚本化中使用如下的命令打包:
 
-`xcodebuild -project name.xcodeproj -target targetname -configuration Release -sdk iphoneos `
+    `xcodebuild -project name.xcodeproj -target targetname -configuration Release -sdk iphoneos `
 
-或者
-
-`xcodebuild -workspace name.xcworkspace -scheme schemename -configuration Release -sdk iphoneos`
+    `xcodebuild -workspace name.xcworkspace -scheme schemename -configuration Release -sdk iphoneos`
 
 2. 然后使用 xcrun 生成 ipa 文件:
-`xcrun -sdk iphoneos -v PackageApplication ./build/Release-iphoneos/$(target|scheme).app"`
+    `xcrun -sdk iphoneos -v PackageApplication ./build/Release-iphoneos/$(target|scheme).app"`
 
 3. 清除 build 过程中产生的中间文件
 4. 结合蒲公英分发平台，将 ipa 文件上传至蒲公英分发平台，同时在终端会打印上传结果以及上传应用后该应用的 URL。蒲公英分发平台能够方便地将 ipa 文件尽快分发到测试人员，该平台有开放 API，可避免人工上传。
@@ -78,3 +76,5 @@ sys.setdefaultencoding('utf-8')
 Upload Success...
 
 进入蒲公英看到了自己刚才上传的应用，以后每个应用放一个修改后唯一的`autobuild.py` 文件，测试，发布，就用它啦。。。
+
+详细介绍见[xcodebuild自动打包+脚本使用](http://www.jianshu.com/p/2d1c6fdc88f2)
