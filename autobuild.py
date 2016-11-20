@@ -54,7 +54,14 @@ def uploadIpaToPgyer(ipaPath):
         print 'HTTPError,Code:'+r.status_code
 
 def buildProject(project, target, output):
-    buildCmd = 'xcodebuild -project %s -target %s -sdk %s -configuration %s build CODE_SIGN_IDENTITY="%s" PROVISIONING_PROFILE="%s"' %(project, target, SDK, CONFIGURATION, CODE_SIGN_IDENTITY, PROVISIONING_PROFILE)
+    if len(CODE_SIGN_IDENTITY) and len(PROVISIONING_PROFILE):
+            buildCmd = 'xcodebuild -project %s -target %s -sdk %s -configuration %s build CODE_SIGN_IDENTITY="%s" PROVISIONING_PROFILE="%s"' %(project, target, SDK, CONFIGURATION, CODE_SIGN_IDENTITY, PROVISIONING_PROFILE)
+                print buildCmd
+                pass
+        else:
+            buildCmd = 'xcodebuild -project %s -target %s -sdk %s -configuration %s' %(project, target, SDK, CONFIGURATION)
+                print buildCmd
+    
         process = subprocess.Popen(buildCmd, shell = True)
         process.wait()
         
@@ -70,6 +77,7 @@ def buildWorkspace(workspace, scheme, output):
     process = subprocess.Popen("pwd", stdout=subprocess.PIPE)
         (stdoutdata, stderrdata) = process.communicate()
         buildDir = stdoutdata.strip() + '/build'
+        print "buildDir: " + buildDir
         if len(CODE_SIGN_IDENTITY) and len(PROVISIONING_PROFILE):
             buildCmd = 'xcodebuild -workspace %s -scheme %s -sdk %s -configuration %s build CODE_SIGN_IDENTITY="%s" PROVISIONING_PROFILE="%s" SYMROOT=%s' %(workspace, scheme, SDK, CONFIGURATION, CODE_SIGN_IDENTITY, PROVISIONING_PROFILE, buildDir)
                 print buildCmd
@@ -77,7 +85,6 @@ def buildWorkspace(workspace, scheme, output):
         else:
             buildCmd = 'xcodebuild -workspace %s -scheme %s -sdk %s -configuration %s SYMROOT=%s' %(workspace, scheme, SDK, CONFIGURATION, buildDir)
                 print buildCmd
-        print "buildDir: " + buildDir
         
         process = subprocess.Popen(buildCmd, shell = True)
         process.wait()
