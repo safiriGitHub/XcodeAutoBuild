@@ -15,7 +15,7 @@
 3. 清除 build 过程中产生的中间文件
 4. 结合蒲公英分发平台，将 ipa 文件上传至蒲公英分发平台，同时在终端会打印上传结果以及上传应用后该应用的 URL。蒲公英分发平台能够方便地将 ipa 文件尽快分发到测试人员，该平台有开放 API，可避免人工上传。
 
-##脚本的使用：
+##autobuild.py （xcodebuild和xcrun自动化打包）：
 一、
 ```
 Usage: autobuild.py [options]
@@ -79,4 +79,27 @@ Upload Success...
 
 进入蒲公英看到了自己刚才上传的应用，以后每个应用放一个修改后唯一的`autobuild.py` 文件，测试，发布，就用它啦。。。
 
-详细介绍见[xcodebuild自动打包+脚本使用](http://www.jianshu.com/p/2d1c6fdc88f2)
+***
+
+##autobuild_archive.py（生成 .xcarchive 再导出 .ipa 的自动打包脚本）
+
+我的python脚本[autobuild_archive.py](https://github.com/safiriGitHub/XcodeAutoBuild)
+
+**脚本的使用：**
+在脚本顶部，有几个全局变量，根据自己的项目情况修改。
+```
+CONFIGURATION = "Release"
+
+# configuration for pgyer
+PGYER_UPLOAD_URL = "http://www.pgyer.com/apiv1/app/upload"
+DOWNLOAD_BASE_URL = "http://www.pgyer.com"
+USER_KEY = "599xxxxxxxxxxxxxxxxxx74"
+API_KEY = "39xxxxxxxxxxxxxxxxxxxxa3"
+```
+相关打包证书在Xcode中配置。
+
+**举个栗子**
+`python autobuild_archive.py -p xcodeAutoBuild.xcodeproj -s xcodeAutoBuild -o ~/Desktop/1232.ipa`
+
+
+###详细介绍见[xcodebuild自动打包+脚本使用](http://www.jianshu.com/p/2d1c6fdc88f2)
