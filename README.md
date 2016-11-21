@@ -65,9 +65,11 @@ import requests
 ImportError: No module named requests
 
 这里requests是Python中给人用的http工具包。我通过`sudo easy_install pip`安装了pip,然后`sudo pip install requests`安装成功 ;运行过程中又出现了编码错误`ascii codec can't decode byte 0xe8 in position 0:ordinal not in range(128)` ，通过添加一下三行代码解决的：
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+`import sys`
+
+`reload(sys)`
+
+`sys.setdefaultencoding('utf-8')`
 
 
 
