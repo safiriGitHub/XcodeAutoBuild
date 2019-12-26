@@ -1,6 +1,6 @@
-#XcodeAutoBuild
+# XcodeAutoBuild
 
-##介绍
+## 介绍
 工作中，特别是所做项目进入测试阶段，肯定会经常打 Ad-hoc 包给测试人员进行测试，但是我们肯定不想每次进行打包的时候都要进行一些工程的设置修改，以及一系列的 next 按钮点击操作，现在就让这些操作都交给脚本化吧!
 
 1. 脚本化中使用如下的命令打包:
@@ -15,7 +15,7 @@
 3. 清除 build 过程中产生的中间文件
 4. 结合蒲公英分发平台，将 ipa 文件上传至蒲公英分发平台，同时在终端会打印上传结果以及上传应用后该应用的 URL。蒲公英分发平台能够方便地将 ipa 文件尽快分发到测试人员，该平台有开放 API，可避免人工上传。
 
-##autobuild.py （xcodebuild和xcrun自动化打包）：
+## autobuild.py （xcodebuild和xcrun自动化打包）：
 一、
 ```
 Usage: autobuild.py [options]
@@ -73,7 +73,7 @@ ImportError: No module named requests
 
 
 
-##举个栗子
+## 举个栗子
 `$ python autobuild.py -w EPayment.xcworkspace -s Epayment -o ~/Desktop/123.ipa`
 Upload Success...
 
@@ -102,4 +102,4 @@ API_KEY = "39xxxxxxxxxxxxxxxxxxxxa3"
 `python autobuild_archive.py -p xcodeAutoBuild.xcodeproj -s xcodeAutoBuild -o ~/Desktop/1232.ipa`
 
 
-###详细介绍见[xcodebuild自动打包+脚本使用](http://www.jianshu.com/p/2d1c6fdc88f2)
+### 详细介绍见[xcodebuild自动打包+脚本使用](http://www.jianshu.com/p/2d1c6fdc88f2)
